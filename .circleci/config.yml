@@ -23,10 +23,8 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.7
-
     steps:
       - checkout
-
       - run:
           name: Run pytest
           command: |
@@ -34,11 +32,8 @@ jobs:
            - docker build -t $DOCKER_USERNAME/minitwittestimage -f Dockerfile-minitwit-tests .
            - yes | docker-compose up -d
            - docker run -it --rm --network=itu-minitwit-network $DOCKER_USERNAME/minitwittestimage
-
-
       - setup_remote_docker:
           docker_layer_caching: true
-
       - run:
           name: Build and push Docker image
           command: |
@@ -47,13 +42,9 @@ jobs:
            - echo "BUILD"
            - docker build -t $DOCKER_USERNAME/minitwit-app:latest . -f Dockerfile-minitwit
            - docker build -t $DOCKER_USERNAME/minitwit-mysql:latest . -f Dockerfile-mysql
-#           - docker build -t $DOCKER_USERNAME/minitwit-flagtool:latest . -f Dockerfile-flagtool
            - echo "PUSH"
            - docker push $DOCKER_USERNAME/minitwit-app:latest
            - docker push $DOCKER_USERNAME/minitwit-mysql:latest
-#           - docker push $DOCKER_USERNAME/minitwit-flagtool:latest
-
-
       - run:
           name: Deploy app to Digital Ocean Server via Docker
           command: |
