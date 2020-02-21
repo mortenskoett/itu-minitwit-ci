@@ -27,13 +27,6 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: Run pytest
-          command: |
-            echo "Running Py tests...."
-            docker build -t $DOCKER_USERNAME/minitwittestimage -f Dockerfile-minitwit-tests .
-            yes | docker-compose up -d
-            docker run -it --rm --network=itu-minitwit-network $DOCKER_USERNAME/minitwittestimage
-      - run:
           name: Build and push Docker image
           command: |
             echo "LOGIN"
@@ -44,6 +37,13 @@ jobs:
             echo "PUSH"
             docker push $DOCKER_USERNAME/minitwit-app:latest
             docker push $DOCKER_USERNAME/minitwit-mysql:latest
+      - run:
+          name: Run pytest on build server
+          command: |
+            echo "Running Py tests...."
+            docker build -t $DOCKER_USERNAME/minitwittestimage -f Dockerfile-minitwit-tests .
+            yes | docker-compose up -d
+            docker run -it --rm --network=itu-minitwit-network $DOCKER_USERNAME/minitwittestimage
       - run:
           name: Deploy app to Digital Ocean Server via Docker
           command: |
