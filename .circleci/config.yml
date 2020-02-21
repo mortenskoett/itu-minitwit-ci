@@ -28,21 +28,21 @@ jobs:
       - run:
           name: Run pytest
           command: |
-           - echo "Running Py tests...."
-           - docker build -t $DOCKER_USERNAME/minitwittestimage -f Dockerfile-minitwit-tests .
-           - yes | docker-compose up -d
-           - docker run -it --rm --network=itu-minitwit-network $DOCKER_USERNAME/minitwittestimage
+            echo "Running Py tests...."
+            docker build -t $DOCKER_USERNAME/minitwittestimage -f Dockerfile-minitwit-tests .
+            yes | docker-compose up -d
+            docker run -it --rm --network=itu-minitwit-network $DOCKER_USERNAME/minitwittestimage
       - run:
           name: Build and push Docker image
           command: |
-           - echo "LOGIN"
-           - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-           - echo "BUILD"
-           - docker build -t $DOCKER_USERNAME/minitwit-app:latest . -f Dockerfile-minitwit
-           - docker build -t $DOCKER_USERNAME/minitwit-mysql:latest . -f Dockerfile-mysql
-           - echo "PUSH"
-           - docker push $DOCKER_USERNAME/minitwit-app:latest
-           - docker push $DOCKER_USERNAME/minitwit-mysql:latest
+            echo "LOGIN"
+            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+            echo "BUILD"
+            docker build -t $DOCKER_USERNAME/minitwit-app:latest . -f Dockerfile-minitwit
+            docker build -t $DOCKER_USERNAME/minitwit-mysql:latest . -f Dockerfile-mysql
+            echo "PUSH"
+            docker push $DOCKER_USERNAME/minitwit-app:latest
+            docker push $DOCKER_USERNAME/minitwit-mysql:latest
       - run:
           name: Deploy app to Digital Ocean Server via Docker
           command: |
