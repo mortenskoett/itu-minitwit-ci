@@ -42,7 +42,7 @@ jobs:
           command: |
             echo "Running Py tests...."
             docker build -t $DOCKER_USERNAME/minitwittestimage -f Dockerfile-minitwit-tests .
-            yes | docker-compose up -d
+            echo "yes" | docker-compose up -d
             docker run -it --rm --network=itu-minitwit-network $DOCKER_USERNAME/minitwittestimage
       - run:
           name: Deploy app to Digital Ocean Server via Docker
