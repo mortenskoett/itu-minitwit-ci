@@ -9,4 +9,6 @@ _mailinglist
 *.venv
 __pycache__/
 ssh_keys/do_ssh_key*
+ssh_keys
 .vagrant/
+Vagrantfile
