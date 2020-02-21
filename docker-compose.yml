@@ -12,7 +12,7 @@ services:
     networks:
       - main
     depends_on:
-      - itusqlimage
+      - minitwit-mysql
     ports:
         - '5000:5000'
 
