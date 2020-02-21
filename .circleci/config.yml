@@ -32,8 +32,6 @@ jobs:
            - docker build -t $DOCKER_USERNAME/minitwittestimage -f Dockerfile-minitwit-tests .
            - yes | docker-compose up -d
            - docker run -it --rm --network=itu-minitwit-network $DOCKER_USERNAME/minitwittestimage
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run:
           name: Build and push Docker image
           command: |
