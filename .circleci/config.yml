@@ -27,11 +27,11 @@ jobs:
             docker build -t $DOCKER_USERNAME/minitwittestimage -f Dockerfile-minitwit-tests .
             echo "yes" | docker-compose up -d
             docker run -it --rm --network=itu-minitwit-network $DOCKER_USERNAME/minitwittestimage
-      - run:
-          name: Deploy app to Digital Ocean Server via Docker
-          command: |
-            ssh -o "StrictHostKeyChecking no" ${MT_USER}@${MT_SERVER} \
-            "source /root/.bash_profile && \
-            cd /vagrant && \
-            docker-compose pull && \
-            docker-compose up -d"
+#      - run:
+#          name: Deploy app to Digital Ocean Server via Docker
+#          command: |
+#            ssh -o "StrictHostKeyChecking no" ${MT_USER}@${MT_SERVER} \
+#            "source /root/.bash_profile && \
+#            cd /vagrant && \
+#            docker-compose pull && \
+#            docker-compose up -d"
