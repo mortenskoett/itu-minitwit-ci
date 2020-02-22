@@ -6,9 +6,9 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - add_ssh_keys:
-          fingerprints:
-            - "2f:aa:68:28:2a:7d:9b:64:8b:32:61:94:00:30:8c:d5"
+#      - add_ssh_keys:
+#          fingerprints:
+#            - "2f:aa:68:28:2a:7d:9b:64:8b:32:61:94:00:30:8c:d5"
       - run:
           name: Run pytest on build server
           command: |
@@ -16,11 +16,11 @@ jobs:
             docker build -t $DOCKER_USERNAME/minitwittestimage -f Dockerfile-minitwit-tests .
             echo "yes" | docker-compose up -d
             docker run -it --rm --network=itu-minitwit-network $DOCKER_USERNAME/minitwittestimage
-      - run:
-          name: Deploy app to Digital Ocean Server via Docker
-          command: |
-            ssh -o "StrictHostKeyChecking no" ${MT_USER}@${MT_SERVER} \
-            "source /root/.bash_profile && \
-            cd /vagrant && \
-            docker-compose pull && \
-            docker-compose up -d"
+#      - run:
+#          name: Deploy app to Digital Ocean Server via Docker
+#          command: |
+#            ssh -o "StrictHostKeyChecking no" ${MT_USER}@${MT_SERVER} \
+#            "source /root/.bash_profile && \
+#            cd /vagrant && \
+#            docker-compose pull && \
+#            docker-compose up -d"
