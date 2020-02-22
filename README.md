@@ -1,6 +1,5 @@
 # ITU-MiniTwit CI/CD Scenario
-
-[![CircleCI](https://circleci.com/gh/circleci/circleci-docs/tree/teesloane-patch-5.svg?style=svg)](https://circleci.com/gh/circleci/circleci-docs/tree/teesloane-patch-5)
+[![CircleCI](gh/mortenskoett/itu-minitwit-ci.svg?style=svg)](https://app.circleci.com/github/mortenskoett/itu-minitwit-ci/pipelines)
 
 ## 1.) Requirements
 
