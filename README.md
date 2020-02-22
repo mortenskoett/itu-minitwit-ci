@@ -1,5 +1,4 @@
 # ITU-MiniTwit CI/CD Scenario
-[![CircleCI](gh/mortenskoett/itu-minitwit-ci.svg?style=svg)](https://app.circleci.com/github/mortenskoett/itu-minitwit-ci/pipelines)
 
 ## 1.) Requirements
 
